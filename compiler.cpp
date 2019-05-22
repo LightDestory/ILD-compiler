@@ -2,8 +2,10 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
-#include "Libraries/stdild.cpp"
-#include "Objects/typenode.cpp"
+#include "Objects/typenode.h"
+#include "Objects/parser.h"
+#include "Libraries/stdild.h"
+
 using namespace std;
 
 #define STACK_LIMIT 127
@@ -30,8 +32,12 @@ int main(int argc, char** argv) {
   }
 
   /* FILE APERTO */
+
   Node* stack[STACK_LIMIT];
-  stack[0] = new Node("nino", 340, 0, "intero");
+  // Parser parser(stack, STACK_LIMIT);
+  // int stack_size = ;
+
+  stack[0] = new Node("nino", 5000, 0, "intero");
 
   /* PRIMA PASSATA */
   int used_stack = 0;
@@ -39,7 +45,7 @@ int main(int argc, char** argv) {
   /* HEADER DEL FILE DI OUTPUT */
   outfile << "ADD-SP-SP-#"<<used_stack<<"#!" << endl;
 
-  // initVar(outfile, stack[0]);
+  initVar(outfile, stack[0]);
   // initReg(outfile, "R1", stack[0]->getValue());
 
   infile.close();
