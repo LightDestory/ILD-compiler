@@ -1,0 +1,1 @@
+./EsEDMISAssembler -ws /home/etienne/Scrivania/Kit_EsEDM/Sorgenti/HelloWorld.edmisa HelloWorld.edmexe ; sleep 120

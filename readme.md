@@ -1,6 +1,10 @@
 # <ILD_compiler>
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
+## Descrizione del progetto
+Progetto dedicato al corso di Archittetura degli Elaboratori dell'Università degli Studi di Catania A.A 2018/2019.
+Con tale progetto si sperimenta lo sviluppo di un linguaggio ad alto livello e di un suo compilatore, scritto in C++, a un linguaggio assemblativo non standard.
+
 ## Specifiche
 * Ogni riga contiene una istruzione
 * Vi sono un massimo di 300 variabili
@@ -16,6 +20,11 @@
 * <destinazione> = <operando_1> * <operando_2>
 * <destinazione> = <operando_1> / <operando_2>
 * <destinazione> = <operando_1> % <operando_2>
+* <destinazione> = <operando_1> ^ <operando_2>
+* <destinazione> = <operando_1> > <operando_2>
+* <destinazione> = <operando_1> < <operando_2>
+* <destinazione> = <operando_1> >= <operando_2>
+* <destinazione> = <operando_1> <= <operando_2>
 
 ## Operazioni logiche
 
