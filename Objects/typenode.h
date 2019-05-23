@@ -21,6 +21,24 @@ public:
   string getLabel();
   int getIndex();
   int getValue();
+  Node& operator=(Node& nd);
+
+};
+
+class Stack {
+
+private:
+
+  Node** nodes;
+  int stack_pop, stack_max;
+
+
+public:
+
+  Stack(int _stack_max);
+  void init(int i, string label, int value, int index, string encode);
+  Node* operator[](int i);
+
 };
 
 #endif

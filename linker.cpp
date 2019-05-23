@@ -2,6 +2,8 @@
 using namespace std;
 int main() {
   system(
-    "g++ compiler.cpp Objects/typenode.cpp Objects/parser.cpp Libraries/stdild.cpp"
+    "g++ compiler.cpp Objects/typenode.cpp Libraries/stdild.cpp"
   );
 }
+
+//Objects/parser.cpp

@@ -10,7 +10,7 @@ using namespace std;
 /* INIZIALIZZAZIONE REGISTRO (NON UTILIZZARE R3) */
 void initReg(fstream& file, string reg, short value) {
   if(value >= -128 && value <= 127) {
-    file << "MOV-"<<reg<<"-#"<<value<<"#!";
+    file << "MOV-"<<reg<<"-#"<<value<<"#!" << endl;
     return;
   }
   if(value > 127) {
@@ -67,4 +67,28 @@ void exitForSub(fstream& file) {
   file << "SBT-SP-SP-#1#!" << endl;
   file << "LDR-SP-SP!" << endl;
   file << "LDR-PC-R0!" << endl;
+}
+
+void sum(fstream& file, Node *dest, Node *op1, Node *op2) {
+  file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
+  file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl;
+  file << "LDR-R1-R1!" << endl;
+  file << "LDR-R2-R2!" << endl;
+  file << "ADD-R1-R1-R2!" << endl;
+  file << "SBT-R2-SP-#"<< dest->getIndex() << "#!" << endl;
+  file << "STR-R1-R2!" << endl;
+}
+
+void sub(fstream& file, Node *dest, Node *op1, Node *op2) {
+  file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
+  file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl;
+  file << "LDR-R1-R1!" << endl;
+  file << "LDR-R2-R2!" << endl;
+  file << "SBT-R1-R1-R2!" << endl;
+  file << "SBT-R2-SP-#"<< dest->getIndex() << "#!" << endl;
+  file << "STR-R1-R2!" << endl;
+}
+
+void mul(fstream& file, Node *dest, Node *op1, Node *op2) {
+  
 }

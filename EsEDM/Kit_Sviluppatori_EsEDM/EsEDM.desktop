@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=EsEDM
+Comment=
+Exec=/home/etienne/Scrivania/Kit_EsEDM/EsEDM
+Icon=system-run
+Path=/home/etienne/Scrivania/Kit_EsEDM
+Terminal=false
+StartupNotify=true
