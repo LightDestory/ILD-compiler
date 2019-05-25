@@ -30,7 +30,8 @@ Soddisfatti i requisiti, è possibile compilare da sorgente:
    2. Cliccare sul tasto __"Clone or Download"__ presente nella pagina del repository e scaricare l'archivio ZIP. Estrai in una locazione a piacere il contenuto.
 2. Esegui il corretto script di compilazione a seconda del S.O:
    1. _Windows_: make_win.bat
-   2. _Linux/MacOS_: make_linux.sh
+   2. _Linux/MacOS_: make_linux.sh 
+      + Potrebbe essere necessario dare i permessi di esecuzione al file prima di poterlo eseguire.
 3. Al termine della compilazione il file sarà situato all'interno della cartella __ild_compiler/output/__
 
 __Nota*:__ _Potrebbe essere necessario eseguire lo script con i diritti di amministratore qualora la repository si trovi in locazioni particolari._
