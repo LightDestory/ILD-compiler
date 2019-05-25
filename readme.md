@@ -8,12 +8,12 @@ Con tale progetto si sperimenta lo sviluppo di un *__semplice__* linguaggio ad a
 ## Specifiche del linguaggio ad alto livello ILD
 Le specifiche del linguaggio ILD sono consultabili nella documentazione allegata al progetto e indicata di seguito:
 
-[Specifiche del linguaggio ILD](NULL)
+[Specifiche del linguaggio ILD](https://github.com/LemuelPuglisi/ILD-compiler/blob/master/documentazione/language.md)
 
 ## Specifiche del compilatore
 Le specifiche del compilatore sono consultabili nella documentazione allegata al progetto e indicata di seguito:
 
-[Specifiche del compilatore](NULL)
+[Specifiche del compilatore](https://github.com/LemuelPuglisi/ILD-compiler/blob/master/documentazione/compiler.md)
 
 ## Piccolo confronto ILD <-> EsEDM
 Da compilare
