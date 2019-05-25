@@ -16,19 +16,18 @@ ILD nasce dalla necessità di semplificare lo sviluppo di programmi basati sul l
 
 ---
 ## Le basi del linguaggio ILD
-* Un file di codice sorgente ILD ha come estensione __.ild__ ;
-* Il linguaggio ILD è *__case-insensitive__* per quanto riguardi le parole chiave;
-* La stesura di codice ILD è caratterizzata da una sezione a blocchi:
-  1. Il blocco *__#dichiarazione__* dov'è possibile dichiarare tutte le variabili che si intendono utilizzare e inizializzarle con valori immediati.
-  2. Il blocco *__#esecuzione__* dov'è possibile eseguire calcoli e operazioni.
-   
-    I due blocchi devono essere *__aperti__* e *__chiudi__* tramite header di apertura e chiusura:
+- Un file di codice sorgente ILD ha come estensione __.ild__ ;
+- Il linguaggio ILD è *__case-insensitive__* per quanto riguardi le parole chiave;
+- La stesura di codice ILD è caratterizzata da una sezione a blocchi:
+    1. Il blocco *__#dichiarazione__* dov'è possibile dichiarare tutte le variabili che si intendono utilizzare e inizializzarle con valori immediati.
+    2. Il blocco *__#esecuzione__* dov'è possibile eseguire calcoli e operazioni.
+- I due blocchi devono essere *__aperti__* e *__chiudi__* tramite header di apertura e chiusura:
     1. _#dichiarazione_ -> _#fine-dichiarazione_
     2. _#esercuzione_ -> _#fine-esecuzione
-* Ogni riga contiene un'istruzione che __deve terminare__ con un punto e virgola (__;__);
-* Vi è un massimo di 300 variabili utilizzabili;
-* I nomi delle variabili possono contenere solo caratteri alfa-numerici;
-* L'assegnazione di un dato a una variabile viene indicata attraverso l'operatore di assegnamento (**=**);
+- Ogni riga contiene un'istruzione che __deve terminare__ con un punto e virgola (__;__);
+- Vi è un massimo di 300 variabili utilizzabili;
+- I nomi delle variabili possono contenere solo caratteri alfa-numerici;
+- L'assegnazione di un dato a una variabile viene indicata attraverso l'operatore di assegnamento (**=**);
 ---
 ## Tipi primitivi
 I tipi primitivi sono essenzialmente la tipologia di dati che è possibile manipolare all'interno del linguaggio ILD:
@@ -38,8 +37,8 @@ I tipi primitivi sono essenzialmente la tipologia di dati che è possibile manip
    * Un dato che può contienere una lettera stampabile a schermo (la tabella di riferimento è ASCII)
 3. **BOOLEANO** *[nome]*
    * Un dato numerico intero usato per indicare condizione di verità che può assumere come valori:
-     * **1** : per indicare condizione di verità
-     * **0** : per indicare condizione di falsità
+      * **1** : per indicare condizione di verità
+      * **0** : per indicare condizione di falsità
 ---
 ## Array
 In ILD è possibile creare array __mono-dimensionali__ dei dati primitivi elencati precedentemente. Per la loro dichiarazione è necessario sapere a priori la dimensione dell'array.
@@ -57,20 +56,22 @@ Il conteggio degli indici inizia da __0__ fino a un valore pari a __DIMENSIONE-1
 
 ---
 ## Operazioni aritmetiche
-* <destinazione> = <operando_1> + <operando_2>
-* <destinazione> = <operando_1> - <operando_2>
-* <destinazione> = <operando_1> * <operando_2>
-* <destinazione> = <operando_1> / <operando_2>
-* <destinazione> = <operando_1> % <operando_2>
-* <destinazione> = <operando_1> ^ <operando_2>
-* <destinazione> = <operando_1> > <operando_2>
-* <destinazione> = <operando_1> < <operando_2>
-* <destinazione> = <operando_1> >= <operando_2>
-* <destinazione> = <operando_1> <= <operando_2>
+* <[destinazione]> = <[operando_1]> + <[operando_2]>
+* <[destinazione]> = <[operando_1]> - <[operando_2]>
+* <[destinazione]> = <[operando_1]> * <[operando_2]>
+* <[destinazione]> = <[operando_1]> / <[operando_2]>
+* <[destinazione]> = <[operando_1]> % <[operando_2]>
+* <[destinazione]> = <[operando_1]> ^ <[operando_2]>
+* <[destinazione]> = <[operando_1]> == <[operando_2]>
+* <[destinazione]> = <[operando_1]> != <[operando_2]>
+* <[destinazione]> = <[operando_1]> > <[operando_2]>
+* <[destinazione]> = <[operando_1]> < <[operando_2]>
+* <[destinazione]> = <[operando_1]> >= <[operando_2]>
+* <[destinazione]> = <[operando_1]> <= <[operando_2]>
 
 ## Operazioni logiche
-* <destinazione> = <operando_1> & <operando_2>
-* <destinazione> = <operando_1> | <operando_2>
+* <[destinazione]> = <[operando_1]> & <[operando_2]>
+* <[destinazione]> = <[operando_1]> | <[operando_2]>
 
 ## Strutture Condizionali
 Il linguaggio ILD implementa solo una struttura condizionale:
