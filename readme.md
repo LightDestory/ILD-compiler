@@ -3,47 +3,47 @@
 
 ## Descrizione del progetto
 Progetto dedicato al corso di Archittetura degli Elaboratori dell'Università degli Studi di Catania A.A 2018/2019.
-Con tale progetto si sperimenta lo sviluppo di un linguaggio ad alto livello e di un suo compilatore, scritto in C++, a un linguaggio assemblativo non standard.
+Con tale progetto si sperimenta lo sviluppo di un *__semplice__* linguaggio ad alto livello denominato _ILD_ e di un suo compilatore, _ild-compiler_ scritto in C++, a un linguaggio assemblativo non standard denominato _EsEDM_.
 
-## Specifiche
-* Ogni riga contiene una istruzione
-* Vi sono un massimo di 300 variabili
+## Specifiche del linguaggio ad alto livello ILD
+Le specifiche del linguaggio ILD sono consultabili nella documentazione allegata al progetto e indicata di seguito:
 
-## Tipi primitivi
-* Intero <nome>
-* Carattere <nome>
-* Booleano <nome>
+[Specifiche del linguaggio ILD](NULL)
 
-## Operazioni aritmetiche
-* <destinazione> = <operando_1> + <operando_2>
-* <destinazione> = <operando_1> - <operando_2>
-* <destinazione> = <operando_1> * <operando_2>
-* <destinazione> = <operando_1> / <operando_2>
-* <destinazione> = <operando_1> % <operando_2>
-* <destinazione> = <operando_1> ^ <operando_2>
-* <destinazione> = <operando_1> > <operando_2>
-* <destinazione> = <operando_1> < <operando_2>
-* <destinazione> = <operando_1> >= <operando_2>
-* <destinazione> = <operando_1> <= <operando_2>
+## Specifiche del compilatore
+Le specifiche del compilatore sono consultabili nella documentazione allegata al progetto e indicata di seguito:
 
-## Operazioni logiche
+[Specifiche del compilatore](NULL)
 
-* <destinazione> = <operando_1> & <operando_2>
-* <destinazione> = <operando_1> | <operando_2>
+## Piccolo confronto ILD <-> EsEDM
+Da compilare
 
-## Condizioni e cicli
-<da implementare>
+[da compilare](NULL)
 
-## Installazione e requisiti
-* requisiti: g++
-* esegui il clone o scarica la repo;
-* compila il file linker.cpp che trovi nella root;
-* esegui ./a.out
-* adesso il progetto è compilato, utilizza ./a.out <nome_sorgente.ild> <nome_output> per creare l'assemblato
+## Requisiti per una build fai-da-te del compilatore
+Per compilare da codice sorgente è necessario avere:
+* Un qualsiasi S.O (_Windows, Linux, MacOS_) dotato di g++
 
-### Built With
-* [C++]
+Soddisfatti i requisiti, è possibile compilare da sorgente:
+1. Scarica una copia della repository sul tuo computer:
+   1. Puoi usare il comando __git clone__ ([clicca qui per la documentazione](https://git-scm.com/docs/git-clone))
+   2. Cliccare sul tasto __"Clone or Download"__ presente nella pagina del repository e scaricare l'archivio ZIP. Estrai in una locazione a piacere il contenuto.
+2. Esegui il corretto script di compilazione a seconda del S.O:
+   1. _Windows_: make_win.bat
+   2. _Linux/MacOS_: make_linux.sh
+3. Al termine della compilazione il file sarà situato all'interno della cartella __ild_compiler/output/__
 
-## Contributing
-**Lemuel Puglisi** - *site:* - [visita](https://lemuelpuglisi.github.io/) <br>
-**Alessio Tudisco** - *site:* - [visita](https://lightdestoryweb.altervista.org) <br>
+__Nota*:__ _Potrebbe essere necessario eseguire lo script con i diritti di amministratore qualora la repository si trovi in locazioni particolari._
+
+## Compilare un sorgente ILD
+Per compilare un sorgente ILD è necessario possedere l'eseguibile del ild_compiler ed eseguire il seguente comando:
+1. __ild_compiler.exe -c__ <file_sorgente> <file_output>
+
+__Nota*:__ _Per maggiori informazioni sull'uso del compilatore si faccia riferimento alla documentazione sulle specifiche del compilatore._
+
+## Built With
+* [C++] [Regex] [StackOverflow]
+
+## Autori del progetto
+* [**Lemuel Puglisi**](https://lemuelpuglisi.github.io/)
+* [**Alessio Tudisco**](https://lightdestoryweb.altervista.org)
