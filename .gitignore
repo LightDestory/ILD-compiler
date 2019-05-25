@@ -1,3 +1,5 @@
-a.out
-a.edmisa
-sample.ild
+/ild_compiler/output/*
+!/ild_compiler/output/non_eliminare.txt
+/.idea/*
+/CMakeLists.txt
+/cmake-build-debug/*
