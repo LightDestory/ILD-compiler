@@ -94,6 +94,94 @@ void sub(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2) {
     file << "STR-R1-R2!" << endl;
 }
 
+void mod(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
+    isEqual(file, dest, op1, op2);
+    file << "SBT-R3-SP-#" << dest->getIndex() << "#!" << endl;
+    file << "LDR-R3-R3!" << endl;
+    file << "CMP-R3-#1#!" << endl;
+    file << "BEQ(MOD_IS_EQUAL)!" << endl;
+    isLess(file, dest, op1, op2);
+    file << "SBT-R3-SP-#" << dest->getIndex() << "#!" << endl;
+    file << "LDR-R3-R3!" << endl;
+    file << "CMP-R3-#1#!" << endl;
+    file << "BEQ(MOD_IS_LESS)!" << endl;
+    file << "SBT-R2-SP-#" << op1->getIndex() << "#!" << endl;
+    file << "SBT-R3-SP-#" << op2->getIndex() << "#!" << endl;
+    file << "LDR-R2-R2!" << endl;
+    file << "LDR-R3-R3!" << endl;
+    file << "MOV-R0-#0#!" << endl;
+    file << "<MOD_SUB>" << endl;
+    file << "MOV-R0-R2" << endl;
+    file << "SBT-R2-R2-R3" << endl;
+    file << "CMP-R2-#0#!" << endl;
+    file << "BRL(MOD_RESULT)!" << endl;
+    file << "<MOD_IS_LESS>" << endl;
+    file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
+    file << "LDR-R1-R1!" << endl;
+    file << "MOV-R0-R1!";
+    file << "BRA(MOD_RESULT)!" << endl;
+
+    file << "<MOD_IS_EQUAL>" << endl;
+    file << "MOV-R0-#0#!";
+    file << "BRA(MOD_RESULT)!" << endl;
+
+    file << "<MOD_RESULT>" << endl;
+    file << "STR-R0-R1!";
+}
+
+/*
+ * MI MANCA LA DOCUMENTAZIONE ESEDM.
+ * Non conoscendo la logica dei salti, ho dovuto R1 come variabile di supporto
+ * su cui caricare il risultato e fare un una salvataggio generale imponendo
+ * un salto non condizionato al SAVE_RESULT
+ */
+void isEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
+    file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
+    file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl;
+    file << "LDR-R1-R1!" << endl;
+    file << "LDR-R2-R2!" << endl;
+    file << "SBT-R1-R1-R2!" << endl;
+    file << "SBT-R2-SP-#" << dest->getIndex() << "#!" << endl;
+    file << "CMP-R1-#0#!" << endl;
+    file << "BEQ(IS_EQUAL)!" << endl;
+    file << "MOV-R1-#0#!" << endl;
+    file << "BRA(EQUAL_SAVE_RESULT)" << endl;
+    file << "<IS_EQUAL>" << endl;
+    file << "MOV-R1-#1#!" << endl;
+    file << "BRA(EQUAL_SAVE_RESULT)" << endl;
+    file << "<EQUAL_SAVE_RESULT>" << endl;
+    file << "STR-R1-R2!" << endl;
+}
+
+/*
+ * isNotEqual poteva essere realizzata richiamando isEqual
+ * e negando il risultato ma a conti fatti si eseguirebbero
+ * più istruzione dell'attuale implementazione
+ */
+void isNotEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
+    file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
+    file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl;
+    file << "LDR-R1-R1!" << endl;
+    file << "LDR-R2-R2!" << endl;
+    file << "SBT-R1-R1-R2!" << endl;
+    file << "SBT-R2-SP-#" << dest->getIndex() << "#!" << endl;
+    file << "CMP-R1-#0#!" << endl;
+    file << "BEQ(IS_EQUAL)!" << endl;
+    file << "MOV-R1-#1#!" << endl;
+    file << "BRA(NOT_EQUAL_SAVE_RESULT)" << endl;
+    file << "<IS_EQUAL>" << endl;
+    file << "MOV-R1-#0#!" << endl;
+    file << "BRA(NOT_EQUAL_SAVE_RESULT)" << endl;
+    file << "<NOT_EQUAL_SAVE_RESULT>" << endl;
+    file << "STR-R1-R2!" << endl;
+}
+
+/*
+ * MI MANCA LA DOCUMENTAZIONE ESEDM.
+ * Non conoscendo la logica dei salti, ho dovuto creare una variabile di supporto
+ * su cui caricare il risultato e fare un una salvataggio generale imponendo
+ * un salto non condizionato al END_IS_GREATER
+ */
 void isGreater(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, bool isEqual) {
     file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
     file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl;
@@ -103,27 +191,27 @@ void isGreater(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, b
     file << "SBT-R1-R1-R2!" << endl;
     file << "SBT-R2-SP-#" << dest->getIndex() << "#!" << endl;
     file << "CMP-R1-#0#!" << endl;
-    if(!isEqual) file << "BGT-(IS_GREATER)!" << endl; // Dovrebbe controllare se R1 > 0
+    if(!isEqual) file << "BRG-(IS_GREATER)!" << endl; // Dovrebbe controllare se R1 > 0
     else file << "BGE-(IS_GREATER)!" << endl; // Dovrebbe controllare se R1 >= 0
     file << "MOV-R3-#0#!" << endl;
     file << "BRA(END_IS_GREATER)!" << endl;
-    /*
-     * MI MANCA LA DOCUMENTAZIONE ESEDM.
-     * Non conoscendo la logica dei salti, ho dovuto creare una variabile di supporto
-     * su cui caricare il risultato e fare in una salvataggio generale imponendo
-     * un salto non condizionato al END_IS_GREATER
-     */
     file << "<IS_GREATER>" << endl;
     file << "MOV-R3-#1#!" << endl;
+    file << "BRA(END_IS_GREATER)!" << endl;
     file << "<END_IS_GREATER>" << endl;
-    file << "STR-R2-R3!" << endl;
-
+    file << "STR-R3-R2!" << endl;
 }
 
 void isGreaterEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
     isGreater(file, dest, op1, op2, true);
 }
 
+/*
+ * MI MANCA LA DOCUMENTAZIONE ESEDM.
+ * Non conoscendo la logica dei salti, ho dovuto creare una variabile di supporto
+ * su cui caricare il risultato e fare un una salvataggio generale imponendo
+ * un salto non condizionato al END_IS_LESS
+ */
 void isLess(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, bool isEqual) {
     file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl;
     file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl;
@@ -133,20 +221,14 @@ void isLess(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, bool
     file << "SBT-R1-R1-R2!" << endl;
     file << "SBT-R2-SP-#" << dest->getIndex() << "#!" << endl;
     file << "CMP-R1-#0#!" << endl;
-    if(!isEqual) file << "BLT-(IS_LESS)!" << endl; // Dovrebbe controllare se R1 < 0
-    else file << "BGE-(IS_LESS)!" << endl; // Dovrebbe controllare se R1 <= 0
+    if(!isEqual) file << "BRL-(IS_LESS)!" << endl; // Dovrebbe controllare se R1 < 0
+    else file << "BLE-(IS_LESS)!" << endl; // Dovrebbe controllare se R1 <= 0
     file << "MOV-R3-#0#!" << endl;
     file << "BRA(END_IS_LESS)!" << endl;
-    /*
-     * MI MANCA LA DOCUMENTAZIONE ESEDM.
-     * Non conoscendo la logica dei salti, ho dovuto creare una variabile di supporto
-     * su cui caricare il risultato e fare in una salvataggio generale imponendo
-     * un salto non condizionato al END_IS_LESS
-     */
     file << "<IS_LESS>" << endl;
     file << "MOV-R3-#1#!" << endl;
     file << "<END_IS_LESS>" << endl;
-    file << "STR-R2-R3!" << endl;
+    file << "STR-R3-R2!" << endl;
 }
 
 void isLessEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
@@ -156,34 +238,35 @@ void isLessEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2)
 void pow(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
     file << "SBT-R1-SP-#" << op1->getIndex() << "#!" << endl; // Base
     file << "SBT-R2-SP-#" << op2->getIndex() << "#!" << endl; // Potenza
-    file << "SBT-R3-SP-#" << dest->getIndex() << "#!" << endl;
+    file << "MOV-R3-#0#!" << endl; // Supporto delle somme
+    file << "MOV-R4-#0#!" << endl; // Supporto del risultato finale
+    file << "MOV-R5-#0#!" << endl; // Supporto delle somme counter
     file << "LDR-R1-R1!" << endl; // Base
     file << "LDR-R2-R2!" << endl; // Potenza
-    file << "MOV-R4-#0#!" << endl; // Supporto del risultato
     file << "CMP-R1-#0#!" << endl;
     file << "BEQ-(NULL_BASE)!" << endl; // Controlla se Base == 0
     file << "CMP-R2-#1#!" << endl;
     file << "BEQ-(ONE_POW)!" << endl; // Controlla se Potenza == 1
     file << "CMP-R2-#0#!" << endl;
     file << "BEQ-(NULL_POW)!" << endl; // Controlla se Potenza == 0
-    file << "<START_POWING>" << endl;
-    file << "SBT-R2-#1#!" << endl;
-    file << "MOV-R5-#R1#!" << endl; // Supporto2 di potenza
-    file << "<SUM_POWING>" << endl;
-    file << "SBT-R5-#1#!" << endl;
 
-    // DA FINIRE
-    file << "ADD-R4-R4-R6" << endl;
-    file << "CMP-R5-#1#!" << endl;
-    file << "BGT-(START_POWING)" << endl;
+    file << "<START_POWING>" << endl;
+    file << "SBT-R2-R2-#1#!" << endl;
+
+
+    file << "<SUM_POWING>" << endl;
+    file << "MOV-R5-R1!" << endl;
+    file << "SBT-R5-R5-#1#!" << endl;
+
+    // DA ULTIMARE APPENA MI VIENE SPIEGATO IL NUMERO DI REGISTRI
+
+    file << "CMP-R5-#0#!" << endl;
+    file << "BRG(SUM_POWING)!" << endl;
+
     file << "CMP-R2-#1#!" << endl;
-    file << "BGT-(START_POWING)" << endl; // Controlla se Potenza > 0
+    file << "BRG(START_POWING)!" << endl;
     file << "BRA(END_POWING)!" << endl;
-    /*
-     * MI MANCA LA DOCUMENTAZIONE ESEDM.
-     * Cosa faccio a uscire dall'esecuzione ed evitare che vada ad eseguire
-     * il resto?
-     */
+
     file << "<NULL_BASE>" << endl;
     file << "MOV-R4-#0#!" << endl; // 0 elevato a qualsiasi numero = 0;
     file << "BRA(END_POWING)!" << endl;
@@ -192,8 +275,10 @@ void pow(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
     file << "BRA(END_POWING)!" << endl;
     file << "<NULL_POW>" << endl;
     file << "MOV-R4-#1#!" << endl; // Qualsiasi numero elevato a 0 = 1
+    file << "BRA(END_POWING)!" << endl;
     file << "<END_POWING>" << endl;
-    file << "STR-R3-R4!" << endl;
+    file << "SBT-R3-SP-#" << dest->getIndex() << "#!" << endl;
+    file << "STR-R4-R3!" << endl;
 }
 
 /* R1 => adr risultato, R2 => primo operando, R3 => secondo operando  */

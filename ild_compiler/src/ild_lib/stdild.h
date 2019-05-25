@@ -24,6 +24,12 @@ void sum(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
 
 void sub(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
 
+void mod(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
+
+void isEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
+
+void isNotEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
+
 void isGreater(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, bool isEqual = false);
 
 void isGreaterEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
