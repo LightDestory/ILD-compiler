@@ -24,6 +24,16 @@ void sum(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
 
 void sub(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
 
+void isGreater(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, bool isEqual = false);
+
+void isGreaterEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
+
+void isLess(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2, bool isEqual = false);
+
+void isLessEqual(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
+
+void pow(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2);
+
 /* SUBROUTINE */
 
 void mul(fstream &file);
