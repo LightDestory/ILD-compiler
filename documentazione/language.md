@@ -4,11 +4,8 @@ ILD nasce dalla necessità di semplificare lo sviluppo di programmi basati sul l
 *Proponiamo un linguaggio __semplice__ e __intuitivo__ che, nei limiti implementativi legati alla nostra inesperienza, riesce a eseguire alcune operazioni matematiche, logiche e binarie.*
 
 ---
-## Table of Contents
-- [Il linguaggio ILD](#il-linguaggio-ild)
-  - [Table of Contents](#table-of-contents)
+## Tabella dei Contenuti
   - [Le basi del linguaggio ILD](#le-basi-del-linguaggio-ild)
-  - [* L'assegnazione di un dato a una variabile viene indicata attraverso l'operatore di assegnamento (**=**);](#lassegnazione-di-un-dato-a-una-variabile-viene-indicata-attraverso-loperatore-di-assegnamento)
   - [Tipi primitivi](#tipi-primitivi)
   - [Array](#array)
   - [Operazioni aritmetiche](#operazioni-aritmetiche)
