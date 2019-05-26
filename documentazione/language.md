@@ -43,10 +43,10 @@ I tipi primitivi sono essenzialmente la tipologia di dati che è possibile manip
 ## Array
 In ILD è possibile creare array __mono-dimensionali__ dei dati primitivi elencati precedentemente. Per la loro dichiarazione è necessario sapere a priori la dimensione dell'array.
 
-Alla dichiarazione dell'array è possibile inizializzarlo con una serie di valori separati da una virgola.
+Alla dichiarazione dell'array è possibile inizializzarlo con una serie di valori separati da una virgola all'interno di un blocco __sulla stessa riga della dichiarazione__ delimitato dalle parentesi graffe.
 1. **INTERO[DIMENSIONE]** *[nome]*
    * Un array di interi non inizializzato
-2. **CARATTERE[DIMENSIONE]** *[nome]* = A,B,C,...,Z
+2. **CARATTERE[DIMENSIONE]** *[nome]* = {A,B,C,...,Z}
    * Un array di caratteri inizializzato con l'alfabeto
 3. **BOOLEANO[DIMENSIONE]** *[nome]*
    * Un array di booleani
