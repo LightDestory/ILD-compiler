@@ -55,10 +55,17 @@ void Helper::printInvalidInput(const int &error) const {
 
 void Helper::printInvalidUsage(const int &error) const {
     string err_text;
-    if (error == Utils::INVALID_USAGE_UNKNOWN_ARGUMENT)
-        err_text = "Detected invalid argument(s)";
-    else if (error == Utils::INVALID_USAGE_NO_SOURCE)
-        err_text = "No source code selected";
+    switch (error) {
+        case Utils::INVALID_USAGE_NO_SOURCE:
+            err_text = "No source code selected";
+            break;
+        case Utils::INVALID_USAGE_UNKNOWN_ARGUMENT:
+            err_text = "Detected invalid argument(s)";
+            break;
+        default:
+            err_text = "Unknown Error";
+            break;
+    }
     cerr << err_text << "\nPlease refer to -h to know how use properly the compiler.";
 }
 

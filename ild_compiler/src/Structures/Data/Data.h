@@ -12,6 +12,6 @@ namespace Data {
     class Stack;
 
     const int NUMERIC_LIMIT = 127;
-    const auto DATA_TYPES = new vector<string>{"intero", "booleano", "carattere"};
+    const auto DATA_TYPES = new vector<string>{"integer", "boolean", "character"};
 };
 #endif

@@ -13,7 +13,6 @@ namespace Utils {
     const int
             INVALID_USAGE_UNKNOWN_ARGUMENT = 0,
             INVALID_USAGE_NO_SOURCE = 1;
-
 };
 
 class Utils::Helper {

@@ -51,7 +51,7 @@ void initVar(fstream &file, Data_Node *node) {
 /* CHIAMATA A SOTTOPROGRAMMA */
 /* NOTE:  params = grandezza di buffer => parametri passati */
 /* USO: Passiamo un buffer di variabili da passare al sottoprogramma */
-void callForSub(string fun_code, fstream &file, int sp, int pc, int params, Data_Node **buffer) {
+void callForSub(string fun_code, fstream &file, int params, Data_Node **buffer) {
     file << "MOV-R0-SP!" << endl;
     for (int i = 0; i < params; i++) {
         file << "ADD-SP-SP-#1#!" << endl;
@@ -285,9 +285,9 @@ void pow(fstream &file, Data_Node *dest, Data_Node *op1, Data_Node *op2){
 /* il posto 0 e 1 è riservato per PC e SP*/
 void mul(fstream &file) {
   file << "<MULTIPLICATION>" << endl;
-  file << "SBT-R1-SP-#2#!" << endl; //destinazione
-  file << "SBT-R2-SP-#3#!" << endl; //primo valore
-  file << "SBT-R0-SP-#4#!" << endl; //secondo valore
+  file << "SBT-R0-SP-#2#!" << endl; //destinazione
+  file << "SBT-R1-SP-#3#!" << endl; //primo valore
+  file << "SBT-R2-SP-#4#!" << endl; //secondo valore
   // start algorithm
   file << "LDR-R1-R1!" <<  endl;
   file << "LDR-R2-R2!" <<  endl;

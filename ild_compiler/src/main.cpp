@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Utils/Helper.h"
 #include "Parser/Parser.h"
-#include "Structures/Data/Data.h"
+#include "ild_lib/stdild.h"
 
 using namespace std;
 using namespace Utils;
@@ -11,15 +12,12 @@ using namespace Parser;
 bool readyToParse(int argc, char *argv[]);
 
 string input_file, output_file;
+vector<string> declarations, instructions, errors;
 
 int main(int argc, char *argv[]) {
+    fstream file("input.edmisa", ios::out);
+    mul(file);
     if (readyToParse(argc, argv)) {
-
-      /* PROVA DELLE IST. STDILD */
-      fstream output;
-      output.open(output_file, fstream::out);
-      /* /PROVA DELLE IST. STDILD */
-
     }
     return 0;
 }
@@ -27,8 +25,7 @@ int main(int argc, char *argv[]) {
 bool readyToParse(int argc, char *argv[]) {
     auto args = Helper::getInstance()->convertArgsVector(argc, argv);
     if (args.empty()) {
-        cout << "Use -h to get help." << endl;
-        cout << "Press any key to continue...";
+        cout << "Use -h to get help.\nPress any key to continue...";
         cin.get();
     } else {
         if (args[0] == "-h") {
@@ -45,10 +42,10 @@ bool readyToParse(int argc, char *argv[]) {
                     return true;
                 }
             } else {
-                Helper::getInstance()->printInvalidUsage(INVALID_USAGE_NO_SOURCE);
+                Helper::getInstance()->printInvalidUsage(Utils::INVALID_USAGE_NO_SOURCE);
             }
         } else {
-            Helper::getInstance()->printInvalidUsage(INVALID_USAGE_UNKNOWN_ARGUMENT);
+            Helper::getInstance()->printInvalidUsage(Utils::INVALID_USAGE_UNKNOWN_ARGUMENT);
         }
     }
     return false;

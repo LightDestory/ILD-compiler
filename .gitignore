@@ -1,5 +1,4 @@
 /ild_compiler/output/*
 !/ild_compiler/output/non_eliminare.txt
 /.idea/*
-/CMakeLists.txt
-/cmake-build-debug/*
+/ild_compiler/cmake-build-debug/*
