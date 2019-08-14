@@ -17,17 +17,17 @@ namespace Parser {
             INVALID_INPUT_FILE_EMPTY = 2;
     const string
             FILE_EXTENSION = ".ild",
-            DECLARATION_SEC_START = "#declaration",
-            DECLARATION_SEC_END = "#declaration_end",
-            CODE_SEC_START = "#code",
-            CODE_SEC_END = "#code_end",
             DECLARATION_SEC_ID = "declaration",
-            CODE_SEC_ID = "code";
+            DECLARATION_SEC_START_REGEX_PATTERN = "^[ ]*(?i)#declaration[ ]*$",
+            DECLARATION_SEC_END_REGEX_PATTERN = "^[ ]*(?i)#declaration_end[ ]*$",
+            CODE_SEC_START = "#code",
+            CODE_SEC_END = "#code_end";
     /*const regex
         DECLARATION_RAW_DATA("^(?i)(intero|booleano|carattere)[ ]+[a-zA-Z][a-zA-Z0-9]*([ ]+[=][ ]*[a-zA-Z0-9()]+)?[;]$"),
         DECLARATION_RAW_ARRAY("^(?i)(intero|booleano|carattere)[[][0-9]+[]][ ]+[a-zA-Z][a-zA-Z0-9]*([ ]+[=][ ]*[{][a-zA-Z0-9,]+[}])?[;]$"),
         ASSIGNMENT_RAW_DATA("^[a-zA-Z][a-zA-Z0-9]*[ ]+[=][ ]*[a-zA-Z0-9(),]+[;]$"),
         ASSIGNMENT_RAW_ARRAY("^[a-zA-Z][a-zA-Z0-9]*[[][0-9]+[]][ ]+[=][ ]*[a-zA-Z0-9(),]+[;]$");
+        ^[ ]*if[ ]*\([ ]*\)[ ]*(?s).{$
     */
 }
 class Parser::Reader {
@@ -38,9 +38,9 @@ private:
 
     fstream input;
 
-    void lookForSection(vector<string> &container, vector<string> &errors, const string section_id);
-
     bool isInputEmpty();
+
+    void lookForSection(vector<string> &container, vector<string> &errors, const string section_id);
 
 public:
     static Reader *getInstance();

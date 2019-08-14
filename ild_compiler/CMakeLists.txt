@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(EXECUTABLE_OUTPUT_PATH "../output")
 add_executable(ild_compiler
         ./src/main.cpp
-        ./src/Utils/Helper.cpp
-        ./src/Utils/Helper.h
+        src/Misc/Helper.cpp
+        src/Misc/Helper.h
         ./src/Parser/Parser.cpp
         ./src/Parser/Parser.h
         ./src/Structures/Data/Nodes/Data_Node.cpp

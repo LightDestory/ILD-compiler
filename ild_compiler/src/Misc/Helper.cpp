@@ -24,20 +24,23 @@ vector<string> &Helper::convertArgsVector(int argc, char *argv[]) {
     return *tmp;
 }
 
-void Helper::printHelp() const {
-    cout << "\nUsage:\n"
-         << "To get info about this project:\n"
-         << "\t compiler_executable -i(nfo) \n"
-         << "To check the compiler's version:\n"
-         << "\t compiler_executable -v(ersion) \n"
-         << "To compile a source code use the following command:\n"
-         << "\t compiler_executable -c '[source_file]' '[destination_file]'\n"
-         << "To enable debug mode and compile a source code use the following command:\n"
-         << "\t compiler_executable -dc '[source_file]' '[destination_file]'\n";
+void Helper::printHelp(const bool verbose) const {
+    if(verbose) {
+        cout << "\nUsage:\n"
+             << "To get info about this project:\n"
+             << "\t compiler_executable -i(nfo) \n"
+             << "To check the compiler's version:\n"
+             << "\t compiler_executable -v(ersion) \n"
+             << "To compile a source code use the following command:\n"
+             << "\t compiler_executable -c '[source_file]' '[destination_file]'\n";
+    }
+    else{
+        cout << "Use -h to get help.\nPress any key to continue...";
+    }
 }
 
 void Helper::printInformation() const {
-    cout << "CAPIBARISMO DA COMPILARE";
+    cout << "ILD Compiler is a project by Alessio Tudisco for 'Architettura degli elaboratori' A.A 2018/2019.\nIt compiles a very basic language in EsEDM assembly code,";
 }
 
 void Helper::printVersion() const {
@@ -46,11 +49,18 @@ void Helper::printVersion() const {
 
 void Helper::printInvalidInput(const int &error) const {
     string err_text;
-    if (error == Parser::INVALID_INPUT_FILE_UNSUPPORTED)
-        err_text = "The selected input file isn't a " + Parser::FILE_EXTENSION + " file!";
-    else if (error == Parser::INVALID_INPUT_FILE_NOT_EXISTS)
-        err_text = "The selected input file doesn't exist!";
-    cerr << err_text;
+    switch (error) {
+        case Parser::INVALID_INPUT_FILE_UNSUPPORTED:
+            err_text = "The selected input file isn't a " + Parser::FILE_EXTENSION + " file!";
+            break;
+        case Parser::INVALID_INPUT_FILE_NOT_EXISTS:
+            err_text = "The selected input file doesn't exist!";
+            break;
+        case Parser::INVALID_INPUT_FILE_EMPTY:
+            err_text = "The selected file is a empty file.";
+            break;
+    }
+    cerr << err_text << "\nPlease refer to the documentation about the compilable language.";
 }
 
 void Helper::printInvalidUsage(const int &error) const {

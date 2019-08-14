@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include "Parser.h"
-#include "../Utils/Helper.h"
+#include "../Misc/Helper.h"
 
 using namespace Parser;
 
@@ -17,7 +17,11 @@ bool Reader::isInputFileSupported(const string &input_file) {
         Utils::Helper::getInstance()->str_to_lower(input_file.substr(input_file.length() - 4)) == FILE_EXTENSION) {
         input.open(input_file);
         if (input.is_open()) {
-            return true;
+            if(!isInputEmpty()){
+                return true;
+            } else{
+                Utils::Helper::getInstance()->printInvalidInput(Parser::INVALID_INPUT_FILE_EMPTY);
+            }
         } else {
             Utils::Helper::getInstance()->printInvalidInput(INVALID_INPUT_FILE_NOT_EXISTS);
         }

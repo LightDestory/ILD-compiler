@@ -28,7 +28,7 @@ public:
 
     vector<string> &convertArgsVector(int argc, char *argv[]);
 
-    void printHelp() const;
+    void printHelp(const bool verbose = false) const;
 
     void printInformation() const;
 
